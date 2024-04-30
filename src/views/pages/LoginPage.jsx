@@ -1,13 +1,25 @@
 import {Alert, Button, Container, Loader, PasswordInput, Stack, TextInput} from "@mantine/core";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {loginAction} from "../../actionCreators/auth.jsx";
 
 export default function LoginPage() {
     const [isLoading, setLoading] = useState(false);
     const [isError, setError] = useState(false);
+    let navigate = useNavigate();
+    let dispatch = useDispatch();
+    let isAuthenticated = useSelector(state => state.account.isAuthenticated);
 
     const formInputChange = () => {
         setError(false);
     }
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/");
+        }
+    }, [isAuthenticated])
 
     async function login(e) {
         e.preventDefault();
@@ -19,8 +31,15 @@ export default function LoginPage() {
 
         setLoading(true);
 
-        fetch('http://localhost:8080/api/login', {method: "POST", body: JSON.stringify(loginData)})
+        fetch('http://localhost:8080/api/login', {
+            method: "POST", body: JSON.stringify(loginData), headers: {
+                'Content-Type': 'application/json'
+            }
+        })
             .then((res) => res.json())
+            .then((data) => {
+                dispatch(loginAction(data));
+            })
             .finally(() => {
                 setLoading(false);
             })

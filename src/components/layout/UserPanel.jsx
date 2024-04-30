@@ -28,13 +28,13 @@ export default function UserPanel() {
     return (
         <Group>
             <Stack gap={0} justify="flex-start">
-                <Text fw={700} ta="right">{userData?.surname}</Text>
                 <Text ta="right">{userData?.name}</Text>
+                <Text fw={700} ta="right">{userData?.surname}</Text>
             </Stack>
             <Menu width={200}>
                 <Menu.Target>
-                    <ActionIcon variant="default">
-                        <IconUserFilled/>
+                    <ActionIcon variant="default" radius="xl">
+                        <IconUserFilled style={{width: "80%", height: "80%"}}/>
                     </ActionIcon>
                 </Menu.Target>
                 <Menu.Dropdown>

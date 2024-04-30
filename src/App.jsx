@@ -1,30 +1,36 @@
-import { useState } from 'react'
-import viteLogo from '/vite.svg'
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+import {MantineProvider} from "@mantine/core";
+import store from "./store.jsx";
+import {Provider} from "react-redux";
+import AuthorizeView from "./views/layout/AuthorizeView.jsx";
+import LoginPage from "./views/pages/LoginPage.jsx";
+import Layout from "./views/layout/Layout.jsx";
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: (
+            <AuthorizeView>
+                <Layout/>
+            </AuthorizeView>
+        )
+    },
+    {
+        path: "/login",
+        element: <LoginPage/>
+    }
+])
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+    return (
+        <MantineProvider>
+            <Provider store={store}>
+                <RouterProvider router={router}/>
+            </Provider>
+        </MantineProvider>
+    )
 }
 
 export default App

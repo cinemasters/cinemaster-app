@@ -50,7 +50,7 @@ export default function LoginPage() {
     }
 
     return (
-        <Container>
+        <Container w={500} mt="20vh">
             <h1>Cinemaster</h1>
             <div>
                 {isError && (

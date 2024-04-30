@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import AuthorizeView from "./views/layout/AuthorizeView.jsx";
 import LoginPage from "./views/pages/LoginPage.jsx";
 import Layout from "./views/layout/Layout.jsx";
+import '@mantine/core/styles.css';
 
 const router = createBrowserRouter([
     {

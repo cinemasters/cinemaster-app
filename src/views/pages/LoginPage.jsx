@@ -34,8 +34,9 @@ export default function LoginPage() {
 
         fetch('http://localhost:8080/api/login', {
             method: "POST", body: JSON.stringify(loginData), headers: {
-                'Content-Type': 'application/json'
-            }
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
         })
             .then((res) => res.json())
             .then((data) => {

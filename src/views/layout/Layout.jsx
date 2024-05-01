@@ -32,7 +32,7 @@ export default function Layout() {
                 <Navigation/>
             </AppShell.Navbar>
 
-            <AppShell.Main>
+            <AppShell.Main style={{display: "flex"}}>
                 {outlet === null ? <Navigate to="/dashboard"/> : <Outlet/>}
             </AppShell.Main>
         </AppShell>

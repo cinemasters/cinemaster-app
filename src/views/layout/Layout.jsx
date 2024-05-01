@@ -1,11 +1,13 @@
 import {useDisclosure} from "@mantine/hooks";
 import {AppShell, Burger, Group, Title} from "@mantine/core";
 import UserPanel from "../../components/layout/UserPanel.jsx";
-import {Outlet} from "react-router-dom";
+import {Navigate, Outlet, useOutlet} from "react-router-dom";
 import Navigation from "../../components/layout/Navigation.jsx";
 
 export default function Layout() {
     const [opened, {toggle}] = useDisclosure();
+    let outlet = useOutlet();
+
     return (
         <AppShell
             header={{height: 60}}
@@ -31,7 +33,7 @@ export default function Layout() {
             </AppShell.Navbar>
 
             <AppShell.Main>
-                <Outlet/>
+                {outlet === null ? <Navigate to="/dashboard"/> : <Outlet/>}
             </AppShell.Main>
         </AppShell>
     );

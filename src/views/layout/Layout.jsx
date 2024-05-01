@@ -1,6 +1,8 @@
 import {useDisclosure} from "@mantine/hooks";
 import {AppShell, Burger, Group, Title} from "@mantine/core";
 import UserPanel from "../../components/layout/UserPanel.jsx";
+import {Outlet} from "react-router-dom";
+import Navigation from "../../components/layout/Navigation.jsx";
 
 export default function Layout() {
     const [opened, {toggle}] = useDisclosure();
@@ -24,9 +26,13 @@ export default function Layout() {
                 </Group>
             </AppShell.Header>
 
-            <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
+            <AppShell.Navbar p="md">
+                <Navigation/>
+            </AppShell.Navbar>
 
-            <AppShell.Main>Main</AppShell.Main>
+            <AppShell.Main>
+                <Outlet/>
+            </AppShell.Main>
         </AppShell>
     );
 }

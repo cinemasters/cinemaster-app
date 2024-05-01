@@ -1,4 +1,3 @@
-import {NavLink} from "@mantine/core";
 import {
     IconBarrierBlock,
     IconBuilding,
@@ -14,24 +13,25 @@ import {
     IconUsers,
     IconVideo
 } from "@tabler/icons-react";
+import NavItem from "./NavItem.jsx";
 
 export default function Navigation() {
     return (
         <nav>
-            <NavLink label="Panel główny" href="#" leftSection={<IconHome size="1rem" stroke={1.5}/>}/>
-            <NavLink label="Kina" href="#" leftSection={<IconBuilding size="1rem" stroke={1.5}/>}/>
-            <NavLink label="Filmy" href="#" leftSection={<IconMovie size="1rem" stroke={1.5}/>}/>
-            <NavLink label="Bilety" href="#" leftSection={<IconTicket size="1rem" stroke={1.5}/>}/>
-            <NavLink label="Konta użytkowników" href="#" leftSection={<IconUsers size="1rem" stroke={1.5}/>}/>
-            <NavLink label="Recenzje" href="#" leftSection={<IconQuote size="1rem" stroke={1.5}/>}/>
-            <NavLink label="Karty podarunkowe" href="#" leftSection={<IconCreditCard size="1rem" stroke={1.5}/>}/>
-            <NavLink label="Konfiguracja" leftSection={<IconSettings size="1rem" stroke={1.5}/>}>
-                <NavLink label="Strefy biletowe" href="#" leftSection={<IconBarrierBlock size="1rem" stroke={1.5}/>}/>
-                <NavLink label="Układy sal kinowych" href="#" leftSection={<IconLayout size="1rem" stroke={1.5}/>}/>
-                <NavLink label="Rodzaje biletów" href="#" leftSection={<IconTags size="1rem" stroke={1.5}/>}/>
-                <NavLink label="Dopłaty do biletów" href="#" leftSection={<IconCash size="1rem" stroke={1.5}/>}/>
-                <NavLink label="Rodzaje seansów" href="#" leftSection={<IconVideo size="1rem" stroke={1.5}/>}/>
-            </NavLink>
+            <NavItem url="/dashboard" label="Panel główny" IconName={IconHome}/>
+            <NavItem url="/cinemas" label="Kina" IconName={IconBuilding}/>
+            <NavItem url="/movies" label="Filmy" IconName={IconMovie}/>
+            <NavItem url="/tickets" label="Bilety" IconName={IconTicket}/>
+            <NavItem url="/accounts" label="Konta użytkowników" IconName={IconUsers}/>
+            <NavItem url="/reviews" label="Recenzje" IconName={IconQuote}/>
+            <NavItem url="/vouchers" label="Karty podarunkowe" IconName={IconCreditCard}/>
+            <NavItem url="#" label="Konfiguracja" IconName={IconSettings}>
+                <NavItem url="/seat-types" label="Strefy biletowe" IconName={IconBarrierBlock}/>
+                <NavItem url="/layouts" label="Układy sal kinowych" IconName={IconLayout}/>
+                <NavItem url="/ticket-types" label="Rodzaje biletów" IconName={IconTags}/>
+                <NavItem url="/perks" label="Dopłaty do biletów" IconName={IconCash}/>
+                <NavItem url="/screening-types" label="Rodzaje seansów" IconName={IconVideo}/>
+            </NavItem>
         </nav>
     )
 }

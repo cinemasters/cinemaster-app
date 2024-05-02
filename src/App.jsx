@@ -6,7 +6,8 @@ import AuthorizeView from "./views/layout/AuthorizeView.jsx";
 import LoginPage from "./views/pages/LoginPage.jsx";
 import Layout from "./views/layout/Layout.jsx";
 import '@mantine/core/styles.css';
-import SeatTypePage from "./views/pages/SeatTypePage.jsx";
+import SeatTypePage from "./views/pages/grids/SeatTypePage.jsx";
+import SeatTypeDetailsPage from "./views/pages/details/SeatTypeDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "seat-types",
                 element: <SeatTypePage/>
+            },
+            {
+                path: "seat-types/:id",
+                element: <SeatTypeDetailsPage/>
             },
             {
                 path: "layouts",

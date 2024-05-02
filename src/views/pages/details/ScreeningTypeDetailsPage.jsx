@@ -1,10 +1,10 @@
-import {Alert, Button, Loader, Stack, TextInput, Title} from "@mantine/core";
-import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {hasLength, matches, useForm} from "@mantine/form";
+import {useNavigate, useParams} from "react-router-dom";
+import {hasLength, useForm} from "@mantine/form";
+import {Alert, Button, Group, Loader, Radio, Stack, TextInput, Title} from "@mantine/core";
 import {IconAlertTriangle} from "@tabler/icons-react";
 
-export default function SeatTypeDetailsPage() {
+export default function ScreeningTypeDetailsPage() {
     const [isLoading, setLoading] = useState(false);
     const [isSaving, setSaving] = useState(false);
     const [name, setName] = useState('');
@@ -13,10 +13,9 @@ export default function SeatTypeDetailsPage() {
     const navigate = useNavigate();
     const form = useForm({
         mode: 'uncontrolled',
-        initialValues: {id: -1, code: '', name: '', description: ''},
+        initialValues: {id: -1, type: 'Video', name: '', description: ''},
         validate: {
             name: hasLength({min: 1, max: 64}, "Nazwa musi mieć od 1 do 64 znaków."),
-            code: matches(/^[A-Za-z0-9]$/, "Kod musi składać się z jednego znaku: A-Z, a-z, 0-9."),
             description: hasLength({max: 255}, "Opis może mieć maksymalnie 255 znaków.")
         }
     })
@@ -24,7 +23,7 @@ export default function SeatTypeDetailsPage() {
     function submitAction() {
         setSaving(true);
         let method = id === "-1" ? 'POST' : 'PUT';
-        let url = `http://localhost:8080/api/seat-types${id !== '-1' ? `/${id}` : ''}`
+        let url = `http://localhost:8080/api/screening-types${id !== '-1' ? `/${id}` : ''}`
 
         fetch(url, {
             method: method, credentials: 'include', body: JSON.stringify(form.getValues()), headers: {
@@ -36,7 +35,7 @@ export default function SeatTypeDetailsPage() {
                 if (data?.success === false) {
                     setError(data?.message ?? 'Nieznany błąd.')
                 } else {
-                    navigate('/seat-types');
+                    navigate('/screening-types');
                 }
             })
             .finally(() => {
@@ -55,7 +54,7 @@ export default function SeatTypeDetailsPage() {
 
         setLoading(true);
 
-        fetch(`http://localhost:8080/api/seat-types/${id}`, {method: "GET", credentials: "include"})
+        fetch(`http://localhost:8080/api/screening-types/${id}`, {method: "GET", credentials: "include"})
             .then((res) => res.json())
             .then((data) => {
                 if (data !== null && data !== undefined) {
@@ -74,7 +73,7 @@ export default function SeatTypeDetailsPage() {
 
     return (
         <Stack>
-            <Title order={1}>{`Strefy biletowe / ${id === '-1' ? 'Utwórz' : name}`}</Title>
+            <Title order={1}>{`Rodzaje seansów / ${id === '-1' ? 'Utwórz' : name}`}</Title>
             {error !== '' && <Alert title={`Wystąpił błąd: ${error}`} color="red" icon={<IconAlertTriangle/>}/>}
             {
                 isLoading ? <Loader/> : (
@@ -82,11 +81,15 @@ export default function SeatTypeDetailsPage() {
                         setError('')
                     }}>
                         <Stack>
-                            <TextInput key={form.key('code')} placeholder="Identyfikator strefy biletowej"
-                                       label="Kod" {...form.getInputProps('code')} />
-                            <TextInput key={form.key('name')} placeholder="Nazwa strefy biletowej"
+                            <Radio.Group key={form.key('type')} label='Typ' {...form.getInputProps('type')}>
+                                <Group mt='xs'>
+                                    <Radio value='Video' label='Wideo'/>
+                                    <Radio value='Audio' label='Audio'/>
+                                </Group>
+                            </Radio.Group>
+                            <TextInput key={form.key('name')} placeholder="Nazwa rodzaju seansów"
                                        label="Nazwa" {...form.getInputProps('name')} />
-                            <TextInput key={form.key('description')} placeholder="Opis strefy biletowej - opcjonalny"
+                            <TextInput key={form.key('description')} placeholder="Opis rodzaju seansów - opcjonalny"
                                        label="Opis" {...form.getInputProps('description')} />
                             <Button disabled={isSaving} type='submit'>{id === "-1" ? 'Utwórz' : 'Zaktualizuj'}</Button>
                             {isSaving && <Loader/>}

@@ -8,6 +8,8 @@ import Layout from "./views/layout/Layout.jsx";
 import '@mantine/core/styles.css';
 import SeatTypePage from "./views/pages/grids/SeatTypePage.jsx";
 import SeatTypeDetailsPage from "./views/pages/details/SeatTypeDetailsPage.jsx";
+import ScreeningTypePage from "./views/pages/grids/ScreeningTypePage.jsx";
+import ScreeningTypeDetailsPage from "./views/pages/details/ScreeningTypeDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -68,7 +70,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "screening-types",
-                element: <div>Screening types</div>
+                element: <ScreeningTypePage/>
+            },
+            {
+                path: "screening-types/:id",
+                element: <ScreeningTypeDetailsPage/>
             }
         ]
     },

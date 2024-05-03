@@ -57,7 +57,7 @@ export default function TicketPerkPage() {
                                             <Table.Td>{el.seatTypeName ?? '-'}</Table.Td>
                                             <Table.Td>{el.screeningTypeName ?? '-'}</Table.Td>
                                             <Table.Td>
-                                                <ActionIcon component={Link} to={`/ticket-perks/${el.id}`}
+                                                <ActionIcon component={Link} to={`/perks/${el.id}`}
                                                             variant="default" radius="xl">
                                                     <IconEdit style={{height: "60%", width: "60%"}}/>
                                                 </ActionIcon>
@@ -72,7 +72,7 @@ export default function TicketPerkPage() {
                 )}
             </Stack>
             <Group justify="flex-end">
-                <Button component={Link} to="/ticket-perks/-1" radius="lg"
+                <Button component={Link} to="/perks/-1" radius="lg"
                         rightSection={<IconPlus style={{width: "80%", height: "80%"}}/>}>Utwórz</Button>
             </Group>
         </Stack>

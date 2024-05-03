@@ -76,6 +76,10 @@ const router = createBrowserRouter([
                 element: <TicketPerkPage/>
             },
             {
+                path: "perks/:id",
+                element: <TicketTypeDetailsPage/>
+            },
+            {
                 path: "screening-types",
                 element: <ScreeningTypePage/>
             },

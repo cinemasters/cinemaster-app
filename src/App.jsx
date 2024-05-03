@@ -10,6 +10,8 @@ import SeatTypePage from "./views/pages/grids/SeatTypePage.jsx";
 import SeatTypeDetailsPage from "./views/pages/details/SeatTypeDetailsPage.jsx";
 import ScreeningTypePage from "./views/pages/grids/ScreeningTypePage.jsx";
 import ScreeningTypeDetailsPage from "./views/pages/details/ScreeningTypeDetailsPage.jsx";
+import TicketTypePage from "./views/pages/grids/TicketTypePage.jsx";
+import TicketTypeDetailsPage from "./views/pages/details/TicketTypeDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -62,7 +64,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "ticket-types",
-                element: <div>Ticket types</div>
+                element: <TicketTypePage/>
+            },
+            {
+                path: "ticket-types/:id",
+                element: <TicketTypeDetailsPage/>
             },
             {
                 path: "perks",

@@ -13,6 +13,7 @@ import ScreeningTypeDetailsPage from "./views/pages/details/ScreeningTypeDetails
 import TicketTypePage from "./views/pages/grids/TicketTypePage.jsx";
 import TicketTypeDetailsPage from "./views/pages/details/TicketTypeDetailsPage.jsx";
 import TicketPerkPage from "./views/pages/grids/TicketPerkPage.jsx";
+import TicketPerkDetailsPage from "./views/pages/details/TicketPerkDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -77,7 +78,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "perks/:id",
-                element: <TicketTypeDetailsPage/>
+                element: <TicketPerkDetailsPage/>
             },
             {
                 path: "screening-types",

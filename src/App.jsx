@@ -6,14 +6,14 @@ import AuthorizeView from "./views/layout/AuthorizeView.jsx";
 import LoginPage from "./views/pages/LoginPage.jsx";
 import Layout from "./views/layout/Layout.jsx";
 import '@mantine/core/styles.css';
-import SeatTypePage from "./views/pages/grids/SeatTypePage.jsx";
-import SeatTypeDetailsPage from "./views/pages/details/SeatTypeDetailsPage.jsx";
-import ScreeningTypePage from "./views/pages/grids/ScreeningTypePage.jsx";
-import ScreeningTypeDetailsPage from "./views/pages/details/ScreeningTypeDetailsPage.jsx";
-import TicketTypePage from "./views/pages/grids/TicketTypePage.jsx";
-import TicketTypeDetailsPage from "./views/pages/details/TicketTypeDetailsPage.jsx";
-import TicketPerkPage from "./views/pages/grids/TicketPerkPage.jsx";
-import TicketPerkDetailsPage from "./views/pages/details/TicketPerkDetailsPage.jsx";
+import SeatTypePage from "./views/pages/seat-type/SeatTypePage.jsx";
+import SeatTypeDetailsPage from "./views/pages/seat-type/SeatTypeDetailsPage.jsx";
+import ScreeningTypePage from "./views/pages/screening_type/ScreeningTypePage.jsx";
+import ScreeningTypeDetailsPage from "./views/pages/screening_type/ScreeningTypeDetailsPage.jsx";
+import TicketTypePage from "./views/pages/ticket_type/TicketTypePage.jsx";
+import TicketTypeDetailsPage from "./views/pages/ticket_type/TicketTypeDetailsPage.jsx";
+import TicketPerkPage from "./views/pages/ticket_perk/TicketPerkPage.jsx";
+import TicketPerkDetailsPage from "./views/pages/ticket_perk/TicketPerkDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {

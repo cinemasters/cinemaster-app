@@ -13,6 +13,7 @@ export default function SeatTypeDetailsPage() {
     const navigate = useNavigate();
     const form = useForm({
         mode: 'uncontrolled',
+        validateInputOnBlur: true,
         initialValues: {id: -1, code: '', name: '', description: ''},
         validate: {
             name: hasLength({min: 1, max: 64}, "Nazwa musi mieć od 1 do 64 znaków."),
@@ -83,9 +84,9 @@ export default function SeatTypeDetailsPage() {
                     }}>
                         <Stack>
                             <TextInput key={form.key('code')} placeholder="Identyfikator strefy biletowej"
-                                       label="Kod" {...form.getInputProps('code')} />
+                                       label="Kod" {...form.getInputProps('code')} withAsterisk/>
                             <TextInput key={form.key('name')} placeholder="Nazwa strefy biletowej"
-                                       label="Nazwa" {...form.getInputProps('name')} />
+                                       label="Nazwa" {...form.getInputProps('name')} withAsterisk/>
                             <TextInput key={form.key('description')} placeholder="Opis strefy biletowej - opcjonalny"
                                        label="Opis" {...form.getInputProps('description')} />
                             <Button disabled={isSaving} type='submit'>{id === "-1" ? 'Utwórz' : 'Zaktualizuj'}</Button>

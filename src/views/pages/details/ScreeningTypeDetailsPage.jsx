@@ -13,6 +13,7 @@ export default function ScreeningTypeDetailsPage() {
     const navigate = useNavigate();
     const form = useForm({
         mode: 'uncontrolled',
+        validateInputOnBlur: true,
         initialValues: {id: -1, type: 'Video', name: '', description: ''},
         validate: {
             name: hasLength({min: 1, max: 64}, "Nazwa musi mieć od 1 do 64 znaków."),
@@ -81,16 +82,17 @@ export default function ScreeningTypeDetailsPage() {
                         setError('')
                     }}>
                         <Stack>
-                            <Radio.Group key={form.key('type')} label='Typ' {...form.getInputProps('type')}>
+                            <TextInput key={form.key('name')} placeholder="Nazwa rodzaju seansów"
+                                       label="Nazwa" {...form.getInputProps('name')} withAsterisk/>
+                            <TextInput key={form.key('description')} placeholder="Opis rodzaju seansów - opcjonalny"
+                                       label="Opis" {...form.getInputProps('description')} />
+                            <Radio.Group key={form.key('type')} label='Typ' {...form.getInputProps('type')}
+                                         withAsterisk>
                                 <Group mt='xs'>
                                     <Radio value='Video' label='Wideo'/>
                                     <Radio value='Audio' label='Audio'/>
                                 </Group>
                             </Radio.Group>
-                            <TextInput key={form.key('name')} placeholder="Nazwa rodzaju seansów"
-                                       label="Nazwa" {...form.getInputProps('name')} />
-                            <TextInput key={form.key('description')} placeholder="Opis rodzaju seansów - opcjonalny"
-                                       label="Opis" {...form.getInputProps('description')} />
                             <Button disabled={isSaving} type='submit'>{id === "-1" ? 'Utwórz' : 'Zaktualizuj'}</Button>
                             {isSaving && <Loader/>}
                         </Stack>

@@ -13,6 +13,7 @@ export default function TicketTypeDetailsPage() {
     const navigate = useNavigate();
     const form = useForm({
         mode: 'uncontrolled',
+        validateInputOnBlur: true,
         initialValues: {id: -1, price: 0.01, name: '', description: ''},
         validate: {
             name: hasLength({min: 1, max: 64}, "Nazwa musi mieć od 1 do 64 znaków."),

@@ -15,6 +15,7 @@ import TicketTypeDetailsPage from "./views/pages/ticket_type/TicketTypeDetailsPa
 import TicketPerkPage from "./views/pages/ticket_perk/TicketPerkPage.jsx";
 import TicketPerkDetailsPage from "./views/pages/ticket_perk/TicketPerkDetailsPage.jsx";
 import RoomLayoutsPage from "./views/pages/room-layout/RoomLayoutsPage.jsx";
+import RoomLayoutCreatePage from "./views/pages/room-layout/RoomLayoutCreatePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "layouts/create",
-                element: <RoomLayoutsPage/>
+                element: <RoomLayoutCreatePage/>
             },
             {
                 path: "ticket-types",

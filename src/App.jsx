@@ -17,6 +17,9 @@ import TicketPerkDetailsPage from "./views/pages/ticket_perk/TicketPerkDetailsPa
 import RoomLayoutsPage from "./views/pages/room-layout/RoomLayoutsPage.jsx";
 import RoomLayoutCreatePage from "./views/pages/room-layout/RoomLayoutCreatePage.jsx";
 import RoomLayoutDetailsPage from "./views/pages/room-layout/RoomLayoutDetailsPage.jsx";
+import MoviesPage from "./views/pages/movies/MoviesPage.jsx";
+import MoviesDetailsPage from "./views/pages/movies/MoviesDetailsPage.jsx";
+import MoviesCreatePage from "./views/pages/movies/MoviesCreatePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -37,7 +40,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "movies",
-                element: <div>Movies</div>
+                element: <MoviesPage />
+            },
+            {
+                path: "movies/:id",
+                element: <MoviesDetailsPage/>
+            },
+            {
+                path: "movies/create",
+                element: <MoviesCreatePage />
             },
             {
                 path: "tickets",

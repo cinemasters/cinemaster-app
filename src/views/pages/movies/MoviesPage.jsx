@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {ActionIcon, Button, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
+import {ActionIcon, Button, Checkbox, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
 import {Link} from "react-router-dom";
 import {IconEdit, IconPlus} from "@tabler/icons-react";
 
@@ -55,7 +55,7 @@ export default function MoviesPage() {
                                             <Table.Td>{el.production}</Table.Td>
                                             <Table.Td>{el.genre}</Table.Td>
                                             <Table.Td>{el.releaseDate}</Table.Td>
-                                            <Table.Td>{el.isVisible}</Table.Td>
+                                            <Table.Td><Checkbox checked={el.isVisible} /></Table.Td>
                                             <Table.Td>
                                                 <ActionIcon component={Link} to={`/movies/${el.id}`}
                                                             variant="default" radius="xl">

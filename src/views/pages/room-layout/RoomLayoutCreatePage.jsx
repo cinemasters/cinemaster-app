@@ -95,7 +95,10 @@ export default function RoomLayoutCreatePage() {
         fetch(`http://localhost:8080/api/room-layouts`, {
             method: "POST",
             credentials: "include",
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            }
         })
             .then((res) => res?.json())
             .then((data) => {
@@ -183,7 +186,8 @@ export default function RoomLayoutCreatePage() {
                                         <Stack>
                                             <Radio value='set' label="Ustaw strefę"/>
                                             {mode === 'set' &&
-                                                <Select data={seatData} value={seat} onChange={setSeat}/>}
+                                                <Select data={seatData} value={seat} onChange={setSeat}
+                                                        allowDeselect={false}/>}
                                             <Radio value='hide' label="Ukryj"/>
                                         </Stack>
                                     </Radio.Group>

@@ -6,6 +6,7 @@ import AuthorizeView from "./views/layout/AuthorizeView.jsx";
 import LoginPage from "./views/pages/LoginPage.jsx";
 import Layout from "./views/layout/Layout.jsx";
 import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
 import SeatTypePage from "./views/pages/seat-type/SeatTypePage.jsx";
 import SeatTypeDetailsPage from "./views/pages/seat-type/SeatTypeDetailsPage.jsx";
 import ScreeningTypePage from "./views/pages/screening_type/ScreeningTypePage.jsx";

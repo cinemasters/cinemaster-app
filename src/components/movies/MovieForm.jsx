@@ -53,7 +53,7 @@ export default function MovieForm({data}) {
             'originalLanguage': matches(/^([a-z]{2}|)$/, 'Język oryginalny może składać się z maksymalnie 2 znaków a-z (ISO 639-1).'),
             'description': hasLength({max: 2048}, 'Opis może składać się z maksymalnie 2048 znaków.'),
             'cast': hasLength({max: 255}, 'Obsada może składać się z maksymalnie 255 znaków.'),
-            'director': hasLength({min:1,max: 255}, 'Reżyser musi mieć od 1 do 255 znaków.'),
+            'director': hasLength({min: 1, max: 255}, 'Reżyser musi mieć od 1 do 255 znaków.'),
             'production': hasLength({min: 1, max: 64}, 'Produkcja musi mieć od 1 do 64 znaków.'),
             'genre': hasLength({min: 1, max: 64}, 'Gatunek może mieć maksymalnie 64 znaki.'),
             'releaseDate': isNotEmpty('Data wydania musi być ustalona.'),
@@ -99,8 +99,8 @@ export default function MovieForm({data}) {
         }
 
         let formData = form.getValues();
-        formData['videoTypes'] = formData.videoTypes.map((el)=> parseInt(el))
-        formData['audioTypes'] = formData.audioTypes.map((el)=> parseInt(el))
+        formData['videoTypes'] = formData.videoTypes.map((el) => parseInt(el))
+        formData['audioTypes'] = formData.audioTypes.map((el) => parseInt(el))
 
         setSaving(true);
         let method = isNullOrUndefined(data) ? 'POST' : 'PUT';
@@ -116,7 +116,7 @@ export default function MovieForm({data}) {
                 if (resp?.success === false) {
                     console.log(resp?.message ?? 'Nieznany błąd.')
                 } else {
-                    navigate('/seat-types');
+                    navigate(`/movies/${resp.data}`);
                 }
             })
             .finally(() => {
@@ -183,7 +183,8 @@ export default function MovieForm({data}) {
                     </Group>
                     <Group justify="flex-end">
                         {isSaving && <Loader/>}
-                        <Button disabled={isSaving} onClick={sendAction}>{data === null || data === undefined ? 'Utwórz' : 'Zaktualizuj'}</Button>
+                        <Button disabled={isSaving}
+                                onClick={sendAction}>{data === null || data === undefined ? 'Utwórz' : 'Zaktualizuj'}</Button>
                     </Group>
                 </Stack>
 

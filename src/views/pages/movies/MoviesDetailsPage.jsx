@@ -16,6 +16,9 @@ export default function MoviesDetailsPage() {
             .then((res) => res.json())
             .then((data) => {
                 if (data !== null && data !== undefined) {
+                    data['videoTypes'] = data.videoTypes.map(e => e.toString())
+                    data['audioTypes'] = data.audioTypes.map(e => e.toString())
+                    data['releaseDate'] = new Date(data['releaseDate'])
                     setMovie(data);
                 } else {
                     navigate("/movies");

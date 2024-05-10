@@ -39,7 +39,7 @@ export default function MoviesPage() {
                         <Table>
                             <Table.Thead>
                                 <Table.Tr>
-                                    <Table.Th>Nazwa</Table.Th>
+                                    <Table.Th>Tytuł</Table.Th>
                                     <Table.Th>Produkcja</Table.Th>
                                     <Table.Th>Gatunek</Table.Th>
                                     <Table.Th>Data wydania</Table.Th>
@@ -51,11 +51,11 @@ export default function MoviesPage() {
                                 {
                                     movies.map((el) => (
                                         <Table.Tr key={el.id}>
-                                            <Table.Td>{el.name}</Table.Td>
+                                            <Table.Td>{el.title}</Table.Td>
                                             <Table.Td>{el.production}</Table.Td>
                                             <Table.Td>{el.genre}</Table.Td>
-                                            <Table.Td>{el.releaseDate}</Table.Td>
-                                            <Table.Td><Checkbox checked={el.isVisible} /></Table.Td>
+                                            <Table.Td>{new Date(el.releaseDate).toLocaleDateString()}</Table.Td>
+                                            <Table.Td><Checkbox checked={el.isVisible}/></Table.Td>
                                             <Table.Td>
                                                 <ActionIcon component={Link} to={`/movies/${el.id}`}
                                                             variant="default" radius="xl">

@@ -24,7 +24,7 @@ export default function Navigation() {
             <NavItem url="/tickets" label="Bilety" IconName={IconTicket}/>
             <NavItem url="/accounts" label="Konta użytkowników" IconName={IconUsers}/>
             <NavItem url="/reviews" label="Recenzje" IconName={IconQuote}/>
-            <NavItem url="/vouchers" label="Karty podarunkowe" IconName={IconCreditCard}/>
+            {false && <NavItem url="/vouchers" label="Karty podarunkowe" IconName={IconCreditCard}/>}
             <NavItem url="#" label="Konfiguracja" IconName={IconSettings}>
                 <NavItem url="/seat-types" label="Strefy biletowe" IconName={IconBarrierBlock}/>
                 <NavItem url="/layouts" label="Układy sal kinowych" IconName={IconLayout}/>

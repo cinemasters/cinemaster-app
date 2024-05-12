@@ -21,6 +21,8 @@ import RoomLayoutDetailsPage from "./views/pages/room-layout/RoomLayoutDetailsPa
 import MoviesPage from "./views/pages/movies/MoviesPage.jsx";
 import MoviesDetailsPage from "./views/pages/movies/MoviesDetailsPage.jsx";
 import MoviesCreatePage from "./views/pages/movies/MoviesCreatePage.jsx";
+import ClientsPage from "./views/pages/clients/ClientsPage.jsx";
+import ClientDetailsPage from "./views/pages/clients/ClientDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "movies",
-                element: <MoviesPage />
+                element: <MoviesPage/>
             },
             {
                 path: "movies/:id",
@@ -49,7 +51,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "movies/create",
-                element: <MoviesCreatePage />
+                element: <MoviesCreatePage/>
             },
             {
                 path: "tickets",
@@ -57,7 +59,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "accounts",
-                element: <div>Accounts</div>
+                element: <ClientsPage/>
+            },
+            {
+                path: "accounts/:id",
+                element: <ClientDetailsPage/>
             },
             {
                 path: "reviews",

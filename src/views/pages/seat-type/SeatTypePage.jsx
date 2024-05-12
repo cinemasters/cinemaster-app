@@ -2,6 +2,8 @@ import {ActionIcon, Button, Group, Loader, Pagination, Stack, Table, Title} from
 import {useEffect, useState} from "react";
 import {IconEdit, IconPlus} from "@tabler/icons-react";
 import {Link} from "react-router-dom";
+import CreateButton from "../../../components/buttons/CreateButton.jsx";
+import UpdateButton from "../../../components/buttons/UpdateButton.jsx";
 
 export default function SeatTypePage() {
     const [isLoading, setLoading] = useState(true)
@@ -68,8 +70,7 @@ export default function SeatTypePage() {
                 )}
             </Stack>
             <Group justify="flex-end">
-                <Button component={Link} to="/seat-types/-1" radius="lg"
-                        rightSection={<IconPlus style={{width: "80%", height: "80%"}}/>}>Utwórz</Button>
+                <CreateButton component={Link} to="/seat-types/-1"/>
             </Group>
         </Stack>
     )

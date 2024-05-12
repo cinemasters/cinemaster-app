@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {ActionIcon, Button, Checkbox, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
 import {Link} from "react-router-dom";
 import {IconEdit, IconPlus} from "@tabler/icons-react";
+import CreateButton from "../../../components/buttons/CreateButton.jsx";
 
 export default function MoviesPage() {
     const [isLoading, setLoading] = useState(true)
@@ -72,8 +73,7 @@ export default function MoviesPage() {
                 )}
             </Stack>
             <Group justify="flex-end">
-                <Button component={Link} to="/movies/create" radius="lg"
-                        rightSection={<IconPlus style={{width: "80%", height: "80%"}}/>}>Utwórz</Button>
+                <CreateButton component={Link} to="/movies/create" />
             </Group>
         </Stack>
     )

@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
-import {useForm} from "@mantine/form";
+import {hasLength, isEmail, matches, useForm} from "@mantine/form";
 import {Button, Checkbox, Group, Loader, PasswordInput, rem, Stack, TextInput} from "@mantine/core";
 import {useNavigate} from "react-router-dom";
+import {IconDeviceFloppy} from "@tabler/icons-react";
 
 export default function ClientForm({data}) {
     const [isLoading, setLoading] = useState(true);
@@ -20,12 +21,21 @@ export default function ClientForm({data}) {
             'offerSubscribed': false,
             'locked': false
         },
-        validate: {}
+        validate: {
+            'name': hasLength({max: 64}, 'Imię może mieć maksymalnie 64 znaki.'),
+            'surname': hasLength({max: 64}, 'Nazwisko może mieć maksymalnie 64 znaki.'),
+            'email': isEmail('Wprowadź poprawny adres e-mail.'),
+            'phoneNumber': matches(/^(|[0-9]{9})$/, 'Wprowadź prawidłowy numer telefonu'),
+            'password': matches(/^(||[A-Za-z0-9!@#$%]{4,16})$/, 'Hasło może składać się z 4-16 znaków: a-z A-Z 0-9 @#$%'),
+            'confirmPassword': (value, values) => value !== values['password'] ? 'Hasła muszą być zgodne.' : null
+        }
     });
 
     useEffect(() => {
         if (data !== null) {
             form.initialize(data);
+            form.setFieldValue('password', '');
+            form.setFieldValue('confirmPassword', '')
             setLoading(false);
         }
     }, [data]);
@@ -93,7 +103,8 @@ export default function ClientForm({data}) {
                     </Stack>
                     <Group justify="flex-end">
                         {isSaving && <Loader/>}
-                        <Button disabled={isSaving} onClick={sendAction} radius="lg">Zaktualizuj</Button>
+                        <Button disabled={isSaving} onClick={sendAction} radius="lg" rightSection={<IconDeviceFloppy
+                            style={{width: '80%', height: '80%'}}/>}>Zaktualizuj</Button>
                     </Group>
                 </Stack>
 

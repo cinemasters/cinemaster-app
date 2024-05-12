@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {ActionIcon, Button, Checkbox, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
+import {ActionIcon, Checkbox, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
 import {Link} from "react-router-dom";
-import {IconEdit, IconPlus} from "@tabler/icons-react";
+import {IconEdit} from "@tabler/icons-react";
 import CreateButton from "../../../components/buttons/CreateButton.jsx";
 
 export default function MoviesPage() {
@@ -73,7 +73,7 @@ export default function MoviesPage() {
                 )}
             </Stack>
             <Group justify="flex-end">
-                <CreateButton component={Link} to="/movies/create" />
+                <CreateButton component={Link} to="/movies/create"/>
             </Group>
         </Stack>
     )

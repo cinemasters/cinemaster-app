@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {ActionIcon, Button, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
+import {ActionIcon, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
 import {Link} from "react-router-dom";
-import {IconEye, IconPlus} from "@tabler/icons-react";
+import {IconEye} from "@tabler/icons-react";
 import CreateButton from "../../../components/buttons/CreateButton.jsx";
 
 export default function RoomLayoutsPage() {

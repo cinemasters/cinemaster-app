@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {ActionIcon, Button, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
+import {ActionIcon, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
 import {Link} from "react-router-dom";
-import {IconEdit, IconPlus} from "@tabler/icons-react";
+import {IconEdit} from "@tabler/icons-react";
 import CreateButton from "../../../components/buttons/CreateButton.jsx";
 
 export default function TicketTypePage() {
@@ -69,7 +69,7 @@ export default function TicketTypePage() {
                 )}
             </Stack>
             <Group justify="flex-end">
-                <CreateButton component={Link} to="/ticket-types/-1" />
+                <CreateButton component={Link} to="/ticket-types/-1"/>
             </Group>
         </Stack>
     )

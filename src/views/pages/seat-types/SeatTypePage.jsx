@@ -1,16 +1,15 @@
-import {ActionIcon, Button, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
+import {ActionIcon, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
 import {useEffect, useState} from "react";
-import {IconEdit, IconPlus} from "@tabler/icons-react";
+import {IconEdit} from "@tabler/icons-react";
 import {Link} from "react-router-dom";
 import CreateButton from "../../../components/buttons/CreateButton.jsx";
-import UpdateButton from "../../../components/buttons/UpdateButton.jsx";
 
 export default function SeatTypePage() {
     const [isLoading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const [seatData, setSeatData] = useState([])
-
+    
     useEffect(() => {
         fetch(`http://localhost:8080/api/seat-types?size=15&page=${currentPage - 1}`, {
             method: "GET",

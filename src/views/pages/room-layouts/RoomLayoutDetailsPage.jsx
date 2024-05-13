@@ -44,20 +44,21 @@ export default function RoomLayoutDetailsPage() {
                         }}>
                             {
                                 layout.seats.map((el, it) => (
-                                <Center key={it} p="sm" bg="var(--mantine-color-gray-light)" w={40} h={40} style={{cursor: "default"}}>
-                                    {el.isHidden ? <IconEyeOff/> : el.code}
-                                </Center>
+                                    <Center key={it} p="sm" bg="var(--mantine-color-gray-light)" w={40} h={40}
+                                            style={{cursor: "default"}}>
+                                        {el.isHidden ? <IconEyeOff/> : el.code}
+                                    </Center>
                                 ))
                             }
                         </div>
                     </Stack>
                     <Stack>
-                        <Pill size="lg"># wierszy</Pill>
+                        <Pill size="lg"># rzędów</Pill>
                         <Text>{layout.rowCount}</Text>
-                        <Pill size="lg"># kolumn</Pill>
+                        <Pill size="lg"># maks. miejsc w rzędzie</Pill>
                         <Text>{layout.columnCount}</Text>
                         <Pill size="lg"># miejsc</Pill>
-                        <Text>{layout.seats.filter(el=> !el.isHidden).length}</Text>
+                        <Text>{layout.seats.filter(el => !el.isHidden).length}</Text>
                     </Stack>
                 </Group>
             )}

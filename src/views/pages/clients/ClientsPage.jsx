@@ -54,8 +54,10 @@ export default function ClientsPage() {
                                             <Table.Td>{el.email}</Table.Td>
                                             <Table.Td>{el.name}</Table.Td>
                                             <Table.Td>{el.surname}</Table.Td>
-                                            <Table.Td><Checkbox checked={el.offerSubscribed}/></Table.Td>
-                                            <Table.Td><Checkbox checked={el.locked}/></Table.Td>
+                                            <Table.Td><Checkbox onChange={() => {
+                                            }} checked={el.offerSubscribed}/></Table.Td>
+                                            <Table.Td><Checkbox onChange={() => {
+                                            }} checked={el.locked}/></Table.Td>
                                             <Table.Td>
                                                 <ActionIcon component={Link} to={`/accounts/${el.id}`}
                                                             variant="default" radius="xl">

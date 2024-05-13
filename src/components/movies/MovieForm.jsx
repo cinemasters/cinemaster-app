@@ -186,7 +186,7 @@ export default function MovieForm({data}) {
                         {
                             data === null || data === undefined ?
                                 <CreateButton isSaving={isSaving} createAction={sendAction}/> :
-                                <UpdateButton isSaving={isSaving} createAction={sendAction}/>
+                                <UpdateButton isSaving={isSaving} updateAction={sendAction}/>
                         }
                     </Group>
                 </Stack>

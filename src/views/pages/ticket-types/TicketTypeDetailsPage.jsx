@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {hasLength, useForm} from "@mantine/form";
-import {Alert, Button, Loader, NumberInput, Stack, TextInput, Title} from "@mantine/core";
+import {Alert, Loader, NumberInput, Stack, TextInput, Title} from "@mantine/core";
 import {IconAlertTriangle} from "@tabler/icons-react";
+import CreateButton from "../../../components/buttons/CreateButton.jsx";
+import UpdateButton from "../../../components/buttons/UpdateButton.jsx";
 
 export default function TicketTypeDetailsPage() {
     const [isLoading, setLoading] = useState(false);
@@ -90,8 +92,11 @@ export default function TicketTypeDetailsPage() {
                                          decimalScale={2} fixedDecimalScale withAsterisk/>
                             <TextInput key={form.key('description')} placeholder="Opis rodzaju biletów - opcjonalny"
                                        label="Opis" {...form.getInputProps('description')} />
-                            <Button disabled={isSaving} type='submit'>{id === "-1" ? 'Utwórz' : 'Zaktualizuj'}</Button>
-                            {isSaving && <Loader/>}
+                            {
+                                id === "-1" ?
+                                    <CreateButton isSaving={isSaving} type="submit"/> :
+                                    <UpdateButton isSaving={isSaving} type="submit"/>
+                            }
                         </Stack>
                     </form>
                 )

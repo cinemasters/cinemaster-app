@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import {hasLength, isInRange, isNotEmpty, matches, useForm} from "@mantine/form";
 import {
-    Button,
     Checkbox,
     Fieldset,
     Group,
@@ -15,6 +14,8 @@ import {
 } from "@mantine/core";
 import {DateInput} from "@mantine/dates";
 import {useNavigate} from "react-router-dom";
+import CreateButton from "../buttons/CreateButton.jsx";
+import UpdateButton from "../buttons/UpdateButton.jsx";
 
 export default function MovieForm({data}) {
     const [isLoading, setLoading] = useState(true);
@@ -182,9 +183,11 @@ export default function MovieForm({data}) {
                         </Fieldset>
                     </Group>
                     <Group justify="flex-end">
-                        {isSaving && <Loader/>}
-                        <Button disabled={isSaving}
-                                onClick={sendAction}>{data === null || data === undefined ? 'Utwórz' : 'Zaktualizuj'}</Button>
+                        {
+                            data === null || data === undefined ?
+                                <CreateButton isSaving={isSaving} createAction={sendAction}/> :
+                                <UpdateButton isSaving={isSaving} createAction={sendAction}/>
+                        }
                     </Group>
                 </Stack>
 

@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {hasLength, useForm} from "@mantine/form";
-import {Alert, Button, Group, Loader, NumberInput, Radio, Select, Stack, TextInput, Title} from "@mantine/core";
+import {Alert, Group, Loader, NumberInput, Radio, Select, Stack, TextInput, Title} from "@mantine/core";
 import {IconAlertTriangle} from "@tabler/icons-react";
+import CreateButton from "../../../components/buttons/CreateButton.jsx";
+import UpdateButton from "../../../components/buttons/UpdateButton.jsx";
 
 export default function TicketPerkDetailsPage() {
     const [isLoading, setLoading] = useState(false);
@@ -167,9 +169,11 @@ export default function TicketPerkDetailsPage() {
                                 <Select label="Rodzaj seansu" placeholder="Wybierz rodzaj seansu..."
                                         key={form.key('screeningTypeId')} {...form.getInputProps('screeningTypeId')}
                                         data={screeningTypeData} withAsterisk/>)}
-
-                            <Button disabled={isSaving} type='submit'>{id === "-1" ? 'Utwórz' : 'Zaktualizuj'}</Button>
-                            {isSaving && <Loader/>}
+                            {
+                                id === "-1" ?
+                                    <CreateButton isSaving={isSaving} type="submit"/> :
+                                    <UpdateButton isSaving={isSaving} type="submit"/>
+                            }
                         </Stack>
                     </form>
                 )

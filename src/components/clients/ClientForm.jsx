@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import {hasLength, isEmail, matches, useForm} from "@mantine/form";
-import {Button, Checkbox, Group, Loader, PasswordInput, rem, Stack, TextInput} from "@mantine/core";
+import {Checkbox, Group, Loader, PasswordInput, rem, Stack, TextInput} from "@mantine/core";
 import {useNavigate} from "react-router-dom";
-import {IconDeviceFloppy} from "@tabler/icons-react";
+import UpdateButton from "../buttons/UpdateButton.jsx";
 
 export default function ClientForm({data}) {
     const [isLoading, setLoading] = useState(true);
@@ -102,9 +102,7 @@ export default function ClientForm({data}) {
                                   label="Subskrybuje oferty" {...form.getInputProps('offerSubscribed', {type: 'checkbox'})} />
                     </Stack>
                     <Group justify="flex-end">
-                        {isSaving && <Loader/>}
-                        <Button disabled={isSaving} onClick={sendAction} radius="lg" rightSection={<IconDeviceFloppy
-                            style={{width: '80%', height: '80%'}}/>}>Zaktualizuj</Button>
+                        <UpdateButton isSaving={isSaving} updateAction={sendAction}/>
                     </Group>
                 </Stack>
 

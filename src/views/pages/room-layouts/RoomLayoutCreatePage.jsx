@@ -17,6 +17,7 @@ import {
 import {hasLength, isInRange, useForm} from "@mantine/form";
 import {IconEyeOff} from "@tabler/icons-react";
 import {useNavigate} from "react-router-dom";
+import CreateButton from "../../../components/buttons/CreateButton.jsx";
 
 export default function RoomLayoutCreatePage() {
     const regularSeat = {value: '-1', label: 'Zwykła', code: ''}
@@ -176,9 +177,8 @@ export default function RoomLayoutCreatePage() {
                                         <Button variant="outline" onClick={() => {
                                             setStep(0)
                                         }}>Wróć</Button>
-                                        <Button onClick={createLayout}>Utwórz</Button>
+                                        <CreateButton isSaving={isSaving} createAction={createLayout}/>
                                     </Group>
-                                    {isSaving && <Loader/>}
                                 </Stack>
                                 <Stack>
                                     <Text>Narzędzia:</Text>

@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {hasLength, useForm} from "@mantine/form";
-import {Alert, Button, Group, Loader, Radio, Stack, TextInput, Title} from "@mantine/core";
+import {Alert, Group, Loader, Radio, Stack, TextInput, Title} from "@mantine/core";
 import {IconAlertTriangle} from "@tabler/icons-react";
+import CreateButton from "../../../components/buttons/CreateButton.jsx";
+import UpdateButton from "../../../components/buttons/UpdateButton.jsx";
 
 export default function ScreeningTypeDetailsPage() {
     const [isLoading, setLoading] = useState(false);
@@ -93,8 +95,11 @@ export default function ScreeningTypeDetailsPage() {
                                     <Radio value='Audio' label='Audio'/>
                                 </Group>
                             </Radio.Group>
-                            <Button disabled={isSaving} type='submit'>{id === "-1" ? 'Utwórz' : 'Zaktualizuj'}</Button>
-                            {isSaving && <Loader/>}
+                            {
+                                id === "-1" ?
+                                    <CreateButton isSaving={isSaving} type="submit"/> :
+                                    <UpdateButton isSaving={isSaving} type="submit"/>
+                            }
                         </Stack>
                     </form>
                 )

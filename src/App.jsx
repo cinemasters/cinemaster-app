@@ -23,6 +23,8 @@ import MoviesDetailsPage from "./views/pages/movies/MoviesDetailsPage.jsx";
 import MoviesCreatePage from "./views/pages/movies/MoviesCreatePage.jsx";
 import ClientsPage from "./views/pages/clients/ClientsPage.jsx";
 import ClientDetailsPage from "./views/pages/clients/ClientDetailsPage.jsx";
+import ReviewsPage from "./views/pages/reviews/ReviewsPage.jsx";
+import ReviewDetailsPage from "./views/pages/reviews/ReviewDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -67,7 +69,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "reviews",
-                element: <div>Reviews</div>
+                element: <ReviewsPage/>
+            },
+            {
+                path: "reviews/:id",
+                element: <ReviewDetailsPage/>
             },
             {
                 path: "vouchers",

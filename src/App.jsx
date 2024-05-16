@@ -25,6 +25,8 @@ import ClientsPage from "./views/pages/clients/ClientsPage.jsx";
 import ClientDetailsPage from "./views/pages/clients/ClientDetailsPage.jsx";
 import ReviewsPage from "./views/pages/reviews/ReviewsPage.jsx";
 import ReviewDetailsPage from "./views/pages/reviews/ReviewDetailsPage.jsx";
+import CinemasPage from "./views/pages/cinemas/CinemasPage.jsx";
+import CinemaCreatePage from "./views/pages/cinemas/CinemaCreatePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -41,7 +43,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "cinemas",
+                element: <CinemasPage/>
+            },
+            {
+                path: "cinemas/:id",
                 element: <div>Cinemas</div>
+            },
+            {
+                path: "cinemas/create",
+                element: <CinemaCreatePage/>
             },
             {
                 path: "movies",

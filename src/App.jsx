@@ -27,6 +27,7 @@ import ReviewsPage from "./views/pages/reviews/ReviewsPage.jsx";
 import ReviewDetailsPage from "./views/pages/reviews/ReviewDetailsPage.jsx";
 import CinemasPage from "./views/pages/cinemas/CinemasPage.jsx";
 import CinemaCreatePage from "./views/pages/cinemas/CinemaCreatePage.jsx";
+import CinemaDetailsPage from "./views/pages/cinemas/CinemaDetailsPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "cinemas/:id",
-                element: <div>Cinemas</div>
+                element: <CinemaDetailsPage/>
             },
             {
                 path: "cinemas/create",

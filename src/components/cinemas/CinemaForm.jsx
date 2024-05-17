@@ -1,10 +1,23 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {hasLength, matches, useForm} from "@mantine/form";
-import {Fieldset, Group, Loader, Stack, Switch, Text, Textarea, TextInput} from "@mantine/core";
+import {
+    Center,
+    Fieldset,
+    Flex,
+    Group,
+    Loader,
+    SimpleGrid,
+    Stack,
+    Switch,
+    Text,
+    Textarea,
+    TextInput
+} from "@mantine/core";
 import CreateButton from "../buttons/CreateButton.jsx";
 import UpdateButton from "../buttons/UpdateButton.jsx";
 import {TimeInput} from "@mantine/dates";
+import {isNullOrUndefined} from "../../utils/ObjectUtils.jsx";
 
 export default function CinemaForm({data}) {
     const days = ['Monday', 'Wednesday', 'Tuesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
@@ -46,7 +59,7 @@ export default function CinemaForm({data}) {
         mode: 'controlled',
         validateInputOnBlur: true,
         initialValues: {
-            openingHours: days.map((el) => ({key: el, openingHour: '', closingHour: '', isClosed: false}))
+            openingHours: days.map((el) => ({day: el, openingHour: '', closingHour: '', closed: false}))
         },
         validate: {
             openingHours: {
@@ -67,9 +80,9 @@ export default function CinemaForm({data}) {
     const validateTime = (values, path, type) => {
         let idx = parseInt(path.split('.')[1]);
 
-        let {openingHour, closingHour, isClosed} = values.openingHours[idx];
+        let {openingHour, closingHour, closed} = values.openingHours[idx];
 
-        if (isClosed) {
+        if (closed) {
             return null;
         }
 
@@ -83,28 +96,30 @@ export default function CinemaForm({data}) {
     function formatOpeningHours(timeData) {
         return {
             openingHours: timeData.openingHours.map((el) => ({
-                day: el.key,
-                openingHour: el.isClosed ? null : el.openingHour,
-                closingHour: el.isClosed ? null : el.closingHour,
-                closed: el.isClosed
+                day: el.day.toUpperCase(),
+                openingHour: el.closed ? null : `${el.openingHour}:00`,
+                closingHour: el.closed ? null : `${el.closingHour}:00`,
+                closed: el.closed
             }))
         }
     }
 
-    function createAction() {
+    function sendAction() {
         let formVal = form.validate();
         let timeVal = timeForm.validate();
 
         if (formVal.hasErrors || timeVal.hasErrors) {
-            console.log(formVal, timeVal)
             return;
         }
+
         setSaving(true);
 
         let sendData = {...form.getValues(), ...formatOpeningHours(timeForm.getValues())}
+        let url = `http://localhost:8080/api/cinemas${!isNullOrUndefined(data) ? `/${data?.id}` : ''}`
+        let method = isNullOrUndefined(data) ? 'POST' : 'PUT';
 
-        fetch('http://localhost:8080/api/cinemas', {
-            method: 'POST', credentials: 'include', body: JSON.stringify(sendData), headers: {
+        fetch(url, {
+            method: method, credentials: 'include', body: JSON.stringify(sendData), headers: {
                 'Content-Type': 'application/json',
             }
         })
@@ -154,7 +169,7 @@ export default function CinemaForm({data}) {
                                     <TextInput key={form.key('city')} label="Miasto"
                                                placeholder="Miasto, w którym jest kino" withAsterisk
                                                {...form.getInputProps('city')}/>
-                                    <TextInput key={form.key('street')} label="Ulica    "
+                                    <TextInput key={form.key('street')} label="Ulica"
                                                placeholder="Ulica na której jest kino" withAsterisk
                                                {...form.getInputProps('street')}/>
                                 </Group>
@@ -165,31 +180,35 @@ export default function CinemaForm({data}) {
                         </Fieldset>
                     </Stack>
                     <Fieldset h="100%" legend="Godziny otwarcia">
-                        <Stack h="100%" justify="space-between">
+                        <SimpleGrid h="100%" cols={4}>
                             {timeForm.getValues().openingHours.map((el, idx) => (
-                                <Group key={el.key} justify="space-between">
-                                    <Text>{dayMap[el.key]}</Text>
+                                <React.Fragment key={idx}>
+                                    <Flex align="center">
+                                        <Text>{dayMap[el.day]}</Text>
+                                    </Flex>
                                     <TimeInput label="Otwarcie"
                                                key={timeForm.key(`openingHours.${idx}.openingHour`)}
-                                               disabled={el.isClosed}
+                                               disabled={el.closed}
                                                {...timeForm.getInputProps(`openingHours.${idx}.openingHour`)}/>
                                     <TimeInput label="Zamknięcie"
                                                key={timeForm.key(`openingHours.${idx}.closingHour`)}
-                                               disabled={el.isClosed}
+                                               disabled={el.closed}
                                                {...timeForm.getInputProps(`openingHours.${idx}.closingHour`)}/>
-                                    <Switch label="Zamknięte"
-                                            key={timeForm.key(`openingHours.${idx}.isClosed`)}
-                                            {...timeForm.getInputProps(`openingHours.${idx}.isClosed`)}/>
-                                </Group>
+                                    <Center>
+                                        <Switch label="Zamknięte"
+                                                key={timeForm.key(`openingHours.${idx}.closed`)}
+                                                {...timeForm.getInputProps(`openingHours.${idx}.closed`)}/>
+                                    </Center>
+                                </React.Fragment>
                             ))}
-                        </Stack>
+                        </SimpleGrid>
                     </Fieldset>
                 </Group>
                 <Group justify="flex-end">
                     {
                         data === null || data === undefined ?
-                            <CreateButton createAction={createAction} isSaving={isSaving}/> :
-                            <UpdateButton isSaving={isSaving}/>
+                            <CreateButton createAction={sendAction} isSaving={isSaving}/> :
+                            <UpdateButton updateAction={sendAction} isSaving={isSaving}/>
                     }
                 </Group>
             </Stack>

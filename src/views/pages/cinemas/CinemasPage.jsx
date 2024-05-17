@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {ActionIcon, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
+import {ActionIcon, Badge, Group, Loader, Pagination, Stack, Table, Title} from "@mantine/core";
 import {Link} from "react-router-dom";
 import {IconEye} from "@tabler/icons-react";
 import CreateButton from "../../../components/buttons/CreateButton.jsx";
@@ -56,7 +56,8 @@ export default function CinemasPage() {
                                             <Table.Td>{el.city}</Table.Td>
                                             <Table.Td>{el.email}</Table.Td>
                                             <Table.Td>{el.phoneNumber}</Table.Td>
-                                            <Table.Td>{el.status}</Table.Td>
+                                            <Table.Td>{el.open ? <Badge color="green">Otwarte</Badge> :
+                                                <Badge color="red">Zamknięte</Badge>}</Table.Td>
                                             <Table.Td>
                                                 <ActionIcon component={Link} to={`/cinemas/${el.id}`}
                                                             variant="default" radius="xl">

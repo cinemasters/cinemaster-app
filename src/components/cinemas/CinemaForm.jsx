@@ -20,15 +20,15 @@ import {TimeInput} from "@mantine/dates";
 import {isNullOrUndefined} from "../../utils/ObjectUtils.jsx";
 
 export default function CinemaForm({data}) {
-    const days = ['Monday', 'Wednesday', 'Tuesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const days = ['MONDAY', 'WEDNESDAY', 'TUESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
     const dayMap = {
-        Monday: 'Poniedziałek',
-        Wednesday: 'Wtorek',
-        Tuesday: 'Środa',
-        Thursday: 'Czwartek',
-        Friday: 'Piątek',
-        Saturday: 'Sobota',
-        Sunday: 'Niedziela'
+        MONDAY: 'Poniedziałek',
+        WEDNESDAY: 'Wtorek',
+        TUESDAY: 'Środa',
+        THURSDAY: 'Czwartek',
+        FRIDAY: 'Piątek',
+        SATURDAY: 'Sobota',
+        SUNDAY: 'Niedziela'
     }
     const [isLoading, setLoading] = useState(true);
     const [isSaving, setSaving] = useState(false);
@@ -59,12 +59,12 @@ export default function CinemaForm({data}) {
         mode: 'controlled',
         validateInputOnBlur: true,
         initialValues: {
-            openingHours: days.map((el) => ({day: el, openingHour: '', closingHour: '', closed: false}))
+            openingHours: days.map((el) => ({day: el, openingTime: '', closingTime: '', closed: false}))
         },
         validate: {
             openingHours: {
-                closingHour: (val, vals, path) => validateTime(vals, path, 'closing'),
-                openingHour: (val, vals, path) => validateTime(vals, path, 'opening')
+                closingTime: (val, vals, path) => validateTime(vals, path, 'closing'),
+                openingTime: (val, vals, path) => validateTime(vals, path, 'opening')
             }
         }
     });
@@ -72,6 +72,7 @@ export default function CinemaForm({data}) {
     useEffect(() => {
         if (data !== null) {
             form.initialize(data);
+            timeForm.initialize(data);
         }
 
         setLoading(false);
@@ -80,25 +81,25 @@ export default function CinemaForm({data}) {
     const validateTime = (values, path, type) => {
         let idx = parseInt(path.split('.')[1]);
 
-        let {openingHour, closingHour, closed} = values.openingHours[idx];
+        let {openingTime, closingTime, closed} = values.openingHours[idx];
 
         if (closed) {
             return null;
         }
 
-        if ((type === 'closing' && closingHour === '') || (type === 'opening' && openingHour === '')) {
+        if ((type === 'closing' && closingTime === '') || (type === 'opening' && openingTime === '')) {
             return 'Ustaw prawidłową godzinę.';
         }
 
-        return closingHour > openingHour ? null : 'Nieprawidłowy zakres czasu.';
+        return closingTime > openingTime ? null : 'Nieprawidłowy zakres czasu.';
     }
 
     function formatOpeningHours(timeData) {
         return {
             openingHours: timeData.openingHours.map((el) => ({
                 day: el.day.toUpperCase(),
-                openingHour: el.closed ? null : `${el.openingHour}:00`,
-                closingHour: el.closed ? null : `${el.closingHour}:00`,
+                openingTime: el.closed ? null : `${el.openingTime}:00`,
+                closingTime: el.closed ? null : `${el.closingTime}:00`,
                 closed: el.closed
             }))
         }
@@ -187,17 +188,17 @@ export default function CinemaForm({data}) {
                                         <Text>{dayMap[el.day]}</Text>
                                     </Flex>
                                     <TimeInput label="Otwarcie"
-                                               key={timeForm.key(`openingHours.${idx}.openingHour`)}
+                                               key={timeForm.key(`openingHours.${idx}.openingTime`)}
                                                disabled={el.closed}
-                                               {...timeForm.getInputProps(`openingHours.${idx}.openingHour`)}/>
+                                               {...timeForm.getInputProps(`openingHours.${idx}.openingTime`)}/>
                                     <TimeInput label="Zamknięcie"
-                                               key={timeForm.key(`openingHours.${idx}.closingHour`)}
+                                               key={timeForm.key(`openingHours.${idx}.closingTime`)}
                                                disabled={el.closed}
-                                               {...timeForm.getInputProps(`openingHours.${idx}.closingHour`)}/>
+                                               {...timeForm.getInputProps(`openingHours.${idx}.closingTime`)}/>
                                     <Center>
                                         <Switch label="Zamknięte"
                                                 key={timeForm.key(`openingHours.${idx}.closed`)}
-                                                {...timeForm.getInputProps(`openingHours.${idx}.closed`)}/>
+                                                {...timeForm.getInputProps(`openingHours.${idx}.closed`, {type: 'checkbox'})}/>
                                     </Center>
                                 </React.Fragment>
                             ))}

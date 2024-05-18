@@ -5,6 +5,7 @@ import {Loader, NumberInput, Stack, TextInput} from "@mantine/core";
 import CreateButton from "../buttons/CreateButton.jsx";
 import UpdateButton from "../buttons/UpdateButton.jsx";
 import {isNullOrUndefined} from "../../utils/ObjectUtils.jsx";
+import {notifications} from "@mantine/notifications";
 
 export default function TicketTypeForm({data}) {
     const [isLoading, setLoading] = useState(true);
@@ -38,8 +39,12 @@ export default function TicketTypeForm({data}) {
         })
             .then((res) => res?.json())
             .then((resp) => {
-                if (resp?.success === false) {
-                    console.log(resp?.message ?? 'Nieznany błąd.')
+                if (!resp?.success) {
+                    notifications.show({
+                        color: 'red',
+                        title: 'Błąd',
+                        message: (resp?.message ?? 'Wystąpił nieznany błąd.')
+                    });
                 } else {
                     navigate(`/ticket-types/${resp.data}`);
                 }

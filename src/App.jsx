@@ -7,6 +7,7 @@ import LoginPage from "./views/pages/LoginPage.jsx";
 import Layout from "./views/layout/Layout.jsx";
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
 import SeatTypePage from "./views/pages/seat-types/SeatTypePage.jsx";
 import SeatTypeDetailsPage from "./views/pages/seat-types/SeatTypeDetailsPage.jsx";
 import ScreeningTypePage from "./views/pages/screening-types/ScreeningTypePage.jsx";
@@ -29,6 +30,7 @@ import CinemasPage from "./views/pages/cinemas/CinemasPage.jsx";
 import CinemaCreatePage from "./views/pages/cinemas/CinemaCreatePage.jsx";
 import CinemaDetailsPage from "./views/pages/cinemas/CinemaDetailsPage.jsx";
 import TicketTypeCreatePage from "./views/pages/ticket-types/TicketTypeCreatePage.jsx";
+import {Notifications} from "@mantine/notifications";
 
 const router = createBrowserRouter([
     {
@@ -152,6 +154,7 @@ function App() {
 
     return (
         <MantineProvider>
+            <Notifications/>
             <Provider store={store}>
                 <RouterProvider router={router}/>
             </Provider>

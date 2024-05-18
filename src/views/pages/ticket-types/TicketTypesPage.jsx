@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {IconEdit} from "@tabler/icons-react";
 import CreateButton from "../../../components/buttons/CreateButton.jsx";
 
-export default function TicketTypePage() {
+export default function TicketTypesPage() {
     const [isLoading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
@@ -69,7 +69,7 @@ export default function TicketTypePage() {
                 )}
             </Stack>
             <Group justify="flex-end">
-                <CreateButton component={Link} to="/ticket-types/-1"/>
+                <CreateButton component={Link} to="/ticket-types/create"/>
             </Group>
         </Stack>
     )

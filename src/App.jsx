@@ -11,7 +11,7 @@ import SeatTypePage from "./views/pages/seat-types/SeatTypePage.jsx";
 import SeatTypeDetailsPage from "./views/pages/seat-types/SeatTypeDetailsPage.jsx";
 import ScreeningTypePage from "./views/pages/screening-types/ScreeningTypePage.jsx";
 import ScreeningTypeDetailsPage from "./views/pages/screening-types/ScreeningTypeDetailsPage.jsx";
-import TicketTypePage from "./views/pages/ticket-types/TicketTypePage.jsx";
+import TicketTypesPage from "./views/pages/ticket-types/TicketTypesPage.jsx";
 import TicketTypeDetailsPage from "./views/pages/ticket-types/TicketTypeDetailsPage.jsx";
 import TicketPerkPage from "./views/pages/ticket-perks/TicketPerkPage.jsx";
 import TicketPerkDetailsPage from "./views/pages/ticket-perks/TicketPerkDetailsPage.jsx";
@@ -28,6 +28,7 @@ import ReviewDetailsPage from "./views/pages/reviews/ReviewDetailsPage.jsx";
 import CinemasPage from "./views/pages/cinemas/CinemasPage.jsx";
 import CinemaCreatePage from "./views/pages/cinemas/CinemaCreatePage.jsx";
 import CinemaDetailsPage from "./views/pages/cinemas/CinemaDetailsPage.jsx";
+import TicketTypeCreatePage from "./views/pages/ticket-types/TicketTypeCreatePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -112,11 +113,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "ticket-types",
-                element: <TicketTypePage/>
+                element: <TicketTypesPage/>
             },
             {
                 path: "ticket-types/:id",
                 element: <TicketTypeDetailsPage/>
+            },
+            {
+                path: "ticket-types/create",
+                element: <TicketTypeCreatePage/>
             },
             {
                 path: "perks",

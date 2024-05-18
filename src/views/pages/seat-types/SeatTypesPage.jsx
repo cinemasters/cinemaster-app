@@ -3,21 +3,22 @@ import {useEffect, useState} from "react";
 import {IconEdit} from "@tabler/icons-react";
 import {Link} from "react-router-dom";
 import CreateButton from "../../../components/buttons/CreateButton.jsx";
+import {isNullOrUndefined} from "../../../utils/ObjectUtils.jsx";
 
-export default function SeatTypePage() {
+export default function SeatTypesPage() {
     const [isLoading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const [seatData, setSeatData] = useState([])
-    
+
     useEffect(() => {
         fetch(`http://localhost:8080/api/seat-types?size=15&page=${currentPage - 1}`, {
             method: "GET",
             credentials: "include"
         })
-            .then((res) => res.json())
+            .then((res) => res?.json())
             .then((data) => {
-                if (data !== null && data !== undefined) {
+                if (!isNullOrUndefined(data)) {
                     setSeatData(data.items)
                     setCurrentPage(data.pageNumber + 1)
                     setTotalPages(data.totalPages)
@@ -69,7 +70,7 @@ export default function SeatTypePage() {
                 )}
             </Stack>
             <Group justify="flex-end">
-                <CreateButton component={Link} to="/seat-types/-1"/>
+                <CreateButton component={Link} to="/seat-types/create"/>
             </Group>
         </Stack>
     )

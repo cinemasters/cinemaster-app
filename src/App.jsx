@@ -8,7 +8,7 @@ import Layout from "./views/layout/Layout.jsx";
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
 import '@mantine/notifications/styles.css';
-import SeatTypePage from "./views/pages/seat-types/SeatTypePage.jsx";
+import SeatTypesPage from "./views/pages/seat-types/SeatTypesPage.jsx";
 import SeatTypeDetailsPage from "./views/pages/seat-types/SeatTypeDetailsPage.jsx";
 import ScreeningTypePage from "./views/pages/screening-types/ScreeningTypePage.jsx";
 import ScreeningTypeDetailsPage from "./views/pages/screening-types/ScreeningTypeDetailsPage.jsx";
@@ -31,6 +31,7 @@ import CinemaCreatePage from "./views/pages/cinemas/CinemaCreatePage.jsx";
 import CinemaDetailsPage from "./views/pages/cinemas/CinemaDetailsPage.jsx";
 import TicketTypeCreatePage from "./views/pages/ticket-types/TicketTypeCreatePage.jsx";
 import {Notifications} from "@mantine/notifications";
+import SeatTypeCreatePage from "./views/pages/seat-types/SeatTypeCreatePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -95,11 +96,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "seat-types",
-                element: <SeatTypePage/>
+                element: <SeatTypesPage/>
             },
             {
                 path: "seat-types/:id",
                 element: <SeatTypeDetailsPage/>
+            },
+            {
+                path: "seat-types/create",
+                element: <SeatTypeCreatePage/>
             },
             {
                 path: "layouts",

@@ -3,8 +3,9 @@ import {ActionIcon, Group, Loader, Pagination, Stack, Table, Title} from "@manti
 import {Link} from "react-router-dom";
 import {IconEdit} from "@tabler/icons-react";
 import CreateButton from "../../../components/buttons/CreateButton.jsx";
+import {isNullOrUndefined} from "../../../utils/ObjectUtils.jsx";
 
-export default function ScreeningTypePage() {
+export default function ScreeningTypesPage() {
     const [isLoading, setLoading] = useState(true)
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
@@ -19,9 +20,9 @@ export default function ScreeningTypePage() {
             method: "GET",
             credentials: "include"
         })
-            .then((res) => res.json())
+            .then((res) => res?.json())
             .then((data) => {
-                if (data !== null && data !== undefined) {
+                if (!isNullOrUndefined(data)) {
                     setScreeningData(data.items)
                     setCurrentPage(data.pageNumber + 1)
                     setTotalPages(data.totalPages)
@@ -73,7 +74,7 @@ export default function ScreeningTypePage() {
                 )}
             </Stack>
             <Group justify="flex-end">
-                <CreateButton component={Link} to="/screening-types/-1"/>
+                <CreateButton component={Link} to="/screening-types/create"/>
             </Group>
         </Stack>
     )

@@ -10,7 +10,7 @@ import '@mantine/dates/styles.css';
 import '@mantine/notifications/styles.css';
 import SeatTypesPage from "./views/pages/seat-types/SeatTypesPage.jsx";
 import SeatTypeDetailsPage from "./views/pages/seat-types/SeatTypeDetailsPage.jsx";
-import ScreeningTypePage from "./views/pages/screening-types/ScreeningTypePage.jsx";
+import ScreeningTypesPage from "./views/pages/screening-types/ScreeningTypesPage.jsx";
 import ScreeningTypeDetailsPage from "./views/pages/screening-types/ScreeningTypeDetailsPage.jsx";
 import TicketTypesPage from "./views/pages/ticket-types/TicketTypesPage.jsx";
 import TicketTypeDetailsPage from "./views/pages/ticket-types/TicketTypeDetailsPage.jsx";
@@ -32,6 +32,7 @@ import CinemaDetailsPage from "./views/pages/cinemas/CinemaDetailsPage.jsx";
 import TicketTypeCreatePage from "./views/pages/ticket-types/TicketTypeCreatePage.jsx";
 import {Notifications} from "@mantine/notifications";
 import SeatTypeCreatePage from "./views/pages/seat-types/SeatTypeCreatePage.jsx";
+import ScreeningTypeCreatePage from "./views/pages/screening-types/ScreeningTypeCreatePage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -140,11 +141,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "screening-types",
-                element: <ScreeningTypePage/>
+                element: <ScreeningTypesPage/>
             },
             {
                 path: "screening-types/:id",
                 element: <ScreeningTypeDetailsPage/>
+            },
+            {
+                path: "screening-types/create",
+                element: <ScreeningTypeCreatePage/>
             }
         ]
     },

@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {Group, Loader, rem, Stack, Tabs, Title} from "@mantine/core";
 import {IconInfoCircle, IconPhoto, IconUserScreen} from "@tabler/icons-react";
 import CinemaForm from "../../../components/cinemas/CinemaForm.jsx";
+import RoomCreator from "../../../components/cinemas/RoomCreator.jsx";
 
 export default function CinemaDetailsPage() {
     const {id} = useParams();
@@ -48,7 +49,9 @@ export default function CinemaDetailsPage() {
                             <Tabs.Panel value="info" h="100%">
                                 <CinemaForm data={cinema}/>
                             </Tabs.Panel>
-                            <Tabs.Panel value="rooms">sale</Tabs.Panel>
+                            <Tabs.Panel value="rooms">
+                                <RoomCreator id={id}/>
+                            </Tabs.Panel>
                             <Tabs.Panel value="screening">seanse</Tabs.Panel>
                         </Tabs>
                     )

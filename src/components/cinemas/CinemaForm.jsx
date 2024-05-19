@@ -71,8 +71,16 @@ export default function CinemaForm({data}) {
 
     useEffect(() => {
         if (data !== null) {
+            let timeData = {
+                openingHours: data.openingHours.map((el) => ({
+                    ...el,
+                    openingTime: el.openingTime ?? '',
+                    closingTime: el.closingTime ?? ''
+                }))
+            }
+
             form.initialize(data);
-            timeForm.initialize(data);
+            timeForm.initialize(timeData);
         }
 
         setLoading(false);
